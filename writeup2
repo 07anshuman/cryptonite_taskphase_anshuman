@@ -1,0 +1,3 @@
+In this module, I focus on working with paths in Linux, understanding the difference between absolute and relative paths. I learn how to move around the file system using relative paths (like ../) and absolute paths (starting from the root /). I also practice creating, navigating, and manipulating directories and files across different locations using commands like ln to create symbolic and hard links. This helps me get familiar with how Linux manages file locations and how I can efficiently work with paths.
+
+The exercises strengthen my ability to move through and manage the file system using paths, which is important for scripting and system navigation later on.
