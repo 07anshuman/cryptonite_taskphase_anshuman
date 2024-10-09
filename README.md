@@ -1,4 +1,4 @@
-# Linux Luminarium: My Journey Through the First 6 Modules
+# Linux Luminarium: First 6 Modules
 
 Welcome to my README of the Linux Luminarium, where I explore the essential commands and concepts of Linux. Here's a summary of my experience across the first 6 modules, including some commands that I struggled with and later conquered.
 
