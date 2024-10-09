@@ -40,28 +40,16 @@ def rot5_decrypt(text):
 
 2. I then identified the URL structure: HTTPS://KATB.IN/YUNGORME
 
-3. Upon careful inspection, I found 4 extraneous characters in the decoded text that weren't present in the original: Y, U, N, G
+3. Upon careful inspection, I found 4 extraneous characters in the decoded text that weren't present in the original: J, Q, X, Z
 
 4. I realized these 4 characters were key to finding the correct URL
 
 ## Solving Process
-1. I created all possible permutations of the 4 characters (Y, U, N, G):
-```python
-from itertools import permutations
-
-chars = ['Y', 'U', 'N', 'G']
-perms = list(permutations(chars))
-```
+1. I created all possible permutations of the 4 characters (J, Q, X, Z) in the link structure at points where the original characters were missing from the original text:
 
 2. This gave me 24 possible combinations
 
 3. I systematically tried each permutation as the URL ending:
-```
-https://katb.in/yung
-https://katb.in/yugu
-https://katb.in/yngu
-...and so on
-```
 
 4. One of these URLs contained the flag
 
@@ -75,9 +63,6 @@ https://katb.in/yngu
 - Python (for decryption and permutations)
 - CyberChef (initial attempts at decoding)
 - Web browser (for testing URLs)
-
-## Flag
-`flag{write_the_actual_flag_here}`
 
 ## Conclusion
 This challenge taught me the importance of:
