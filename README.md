@@ -1,6 +1,6 @@
 # Linux Luminarium: Comprehensive Guide
 
-Welcome to the comprehensive guide of the Linux Luminarium, where we explore the essential commands and concepts of Linux. This guide covers 20 modules, including detailed explanations, command examples, personal insights, and challenge flags for each section.
+Welcome to the comprehensive guide of the Linux Luminarium, where we explore the essential commands and concepts of Linux. This guide covers 20 essential points from the 12 modules given, including detailed explanations, command examples, personal insights, and challenge flags for each section.
 
 ## Table of Contents
 1. [Hello Hackers](#1-hello-hackers-)
