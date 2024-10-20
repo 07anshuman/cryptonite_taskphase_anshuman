@@ -480,6 +480,61 @@ pwn.college{MeGGNOWD_P1soZKxyqX5jhEIpOl.dBTM2QDL3IjN0czW}
 pwn.college{0NmyF4EEknowtesl2lVa4fGA-oY.dNTM5QDL3IjN0czW}
 pwn.college{E91_QKJTZ6nD0gCqHtf6kH7v5ef.dNTM2QDL3IjN0czW}
 ```
+Here’s the corrected version with **three modules** and the **properly formatted flags**:
+
+---
+
+## **Untangling Users**  
+
+In this module, I explored how Linux manages **multiple users** on the system. Aside from basic users like `hacker` and `root`, I learned that many other system users are defined in the **`/etc/passwd`** file. Some users are there for **historical reasons**, some for **services** like `sshd` or `mysql`, and others for **privilege separation** (like `nobody`).
+
+### **Key Concepts**  
+1. **/etc/passwd**: Stores user account information.  
+2. **User IDs (UIDs)**: Each user has a unique numerical identifier (e.g., `root` is `0`).  
+3. **Switching Users**: Commands like `su` or `sudo` allow switching between users for administrative tasks.  
+4. **Service Users**: System services run under specific users (e.g., `mysql` runs under `mysql` user).
+
+### **Flags Collected**  
+- `pwn.college{cCCCqDkPYf_O6Xnl09_GnsV5lGt.ddDN4QDL3IjN0czW}`  
+- `pwn.college{YHcG12kSp68ItGeFGecj0u2MiRN.dhDN4QDL3IjN0czW}`  
+- `pwn.college{8sLDJi6AKEh6KgeOwWS-eRfDLPx.dlDN4QDL3IjN0czW}`  
+- `pwn.college{N0kw6kSQMA_QGOpHF62DsaJtWZN.jqDN4QDL3IjN0czW}`  
+
+---
+
+## **Chaining Commands**  
+
+This module focused on **running multiple commands together** to perform more complex operations. While I had already used **pipes** (`|`), I also learned about other ways to chain commands.
+
+### **Key Concepts**  
+1. **`command1; command2`**: Runs commands in sequence, no matter if the first one succeeds or fails.  
+2. **`command1 && command2`**: Runs the second command only if the first one succeeds.  
+3. **`command1 || command2`**: Runs the second command only if the first one fails.  
+4. **`command &`**: Runs the command in the background.
+
+### **Flags Collected**  
+- `pwn.college{pAPyCmno8JL_RYdkjrCvgczDLAH.jiDN4QDL3IjN0czW}`  
+- `pwn.college{VfoH87aEqv_9GpdAJTKEzXtPWOQ.jfDN4QDL3IjN0czW}`  
+- `pwn.college{OwSPvMcqPE_J90sHEFhshXtREOA.jtDN4QDL3IjN0czW}`  
+- `pwn.college{WNCyu6wTpF_2KAcoHSIfhAtEZOn.jgDN4QDL3IjN0czW}`  
+
+---
+
+## **Pondering Path**  
+
+In this module, I learned how the **shell locates commands** when I type them without specifying their full path. The shell uses the **PATH** environment variable, which contains a list of directories to search for commands.
+
+### **Key Concepts**  
+1. **What is PATH?**: A list of directories separated by colons (`:`), e.g., `/usr/bin:/bin:/usr/local/bin`.  
+2. **How PATH Works**: The shell searches these directories in order. If the command isn’t found, it returns `command not found`.  
+3. **Modifying PATH**: You can add directories to the PATH using `export PATH=$PATH:/new/path`.  
+4. **Security Tip**: Avoid adding `.` (current directory) to PATH, as it can lead to accidental or malicious command execution.
+
+### **Flags Collected**  
+- `pwn.college{MHqWf6wjDp_RTWkpAKbfChTxLOYt.jzDN4QDL3IjN0czW}`  
+- `pwn.college{AOwTq6NpED_fWNkd2RCsNYtGLOV.jkDN4QDL3IjN0czW}`  
+- `pwn.college{Oq2NTWAfpG_6kswDHFLcYtwZMOJ.jnDN4QDL3IjN0czW}`  
+- `pwn.college{OpNT2JAqDR_WfMkLHCYkwtzVLOG.jmDN4QDL3IjN0czW}`  
 
 ---
 
