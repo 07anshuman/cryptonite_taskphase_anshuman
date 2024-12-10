@@ -1,0 +1,3 @@
+[submodule "picoctf"]
+	path = picoctf
+	url = https://github.com/07anshuman/picoctf
