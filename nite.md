@@ -107,6 +107,7 @@ df.to_excel('output.xlsx', index=False)
 ```
 
 `7'b1000000` means the `g` of `gfedcba` is OFF while the rest are ON and from the pic below we understand what is the `g` segment and what is `a`, it is a  standard.
+
 ![display](displayseg.png)
 
 this way we can map what the output signals display.
