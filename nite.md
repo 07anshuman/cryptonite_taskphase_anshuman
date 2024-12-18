@@ -6,11 +6,11 @@ Contributions made but not solved it fully myself (did later) (no points, won't 
 UART protocol, but with a nonstandard baud rate. First step, figuring out baud rate with the help of pulseview. 
 Zoomed in on the signal and looked for the smallest bit. Baud rate = 1/(time of the smallest bit) 
 
-![UART1]{Uart1.png}
+![UART1](Uart1.png)
 
 The baud rate was `5405405`. Used that in the `add protocol detector` with `UART` and got the hex data. Converting that gives us the flag. 
 
-![UART2]{Uart2.png}
+![UART2](Uart2.png)
 
 # Challenge Ancient-Ahh-Display
 ## nite{tr0UbLe_bUbbLe_L0L}
@@ -107,9 +107,9 @@ df.to_excel('output.xlsx', index=False)
 ```
 
 `7'b1000000` means the `g` of `gfedcba` is OFF while the rest are ON and from the pic below we understand what is the `g` segment and what is `a`, it is a  standard.
-![display]{displayseg.png}
+![display](displayseg.png)
 
 this way we can map what the output signals display.
 
 Output:
-![output][disoutput.png]
+![output](disoutput.png)
