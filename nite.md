@@ -114,3 +114,15 @@ this way we can map what the output signals display.
 
 Output:
 ![output](disoutput.png)
+
+
+# Challenge Seek Quence
+## nite{1010101001101010}
+
+So to solve this is to find the sequence that would give an active low out of the OR gate at the bottom. 
+
+![bottom](seekic.png)
+
+As I've edited in the picture, for the output of OR gate to be 0, both its inputs at pin 13,12 should be 0. The output at `74LS688` comparators is inverted and so to output a 0 we need the condition `P=R` to be true. Which means the connections of VCC and GND at `R0 to R7` must be equal to the input obtained via the shift registers `74HC164`. Now, the two shift registers following serial shifting on every clock pulse actually act as a 16-bit shift register. So the sequence to be given to the shift registers is `0001010100000101`. This was the logic behind the bottom part of the schematic. 
+
+Now, to figure out the top part I had to contact `Nigg4CTF`. He told me to search up sequence detectors and so I did, what didn't make sense was what sequence was this detector detecting. I tried simulating it in LTSpice, Z3 solver but couldn't really get far cause of a lack of experience working with these tools. I contacted the guy again. He explained how the output sequence of `0001` meant it was a 4-bit sequence detector. and the bits right after `01` meant it had to be overlapping type cause otherwise the next one would only be 4-bits away. And the sequence it was detecting couldnt be `0000` ot `1111` cause the `00010101` would otherwise have to be `000111`. the only possible sequences were `0101` or `1010`. Looked at the schematics of sequence detectors for both and turns out it was a `1010` overlapping sequence detector! Now just had to create a sequence for that output and that's the flag! Pure logic approach, awesome!
