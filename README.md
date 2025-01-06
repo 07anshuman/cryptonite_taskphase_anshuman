@@ -541,3 +541,10 @@ In this module, I learned how the **shell locates commands** when I type them wi
 ## Conclusion
 
 Through this command line exploitation challenge, I have gained significant knowledge and practical skills in shell scripting and command line operations. Understanding variables, process management, file permissions, and command execution has equipped me to tackle real-world challenges in system administration and cybersecurity. This learning experience has reinforced my interest in exploring further into these topics further and enhancing my technical capabilities.
+
+
+
+
+## Pico progress bar
+
+![FUNC 1](progress.jpeg)
