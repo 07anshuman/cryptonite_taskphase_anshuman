@@ -547,4 +547,4 @@ Through this command line exploitation challenge, I have gained significant know
 
 ## Pico progress bar
 
-![FUNC 1](progress.jpeg)
+![FUNC 1](progress.jpg)
