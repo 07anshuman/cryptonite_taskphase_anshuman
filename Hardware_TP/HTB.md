@@ -92,6 +92,7 @@ Here:
   Pull-down resistor connected between the output node and ground
   Output taken from the junction between the two transistor collectors
 
+  ```
 For A = 0V, B = 0V (Both inputs LOW)
 
   Q1: Base = 0V : OFF (no base current)
@@ -114,6 +115,7 @@ For A = 5V, B = 0V (A HIGH, B LOW)
 
 Current Path: +5V to Q1 (emitter to collector) to Output to Pull-down resistor to GND
 Output: HIGH 
+```
 
 ## NOR Gate
 ![image](https://github.com/user-attachments/assets/60006c7b-ef43-4f89-9c7a-6be6c6a4a4c7)
@@ -127,6 +129,7 @@ Here:
   Output taken from the junction between the resistor and transistor collectors
   Ground connection at the bottom (transistor emitters)
 
+```
 For A = 0V, B = 0V (Both inputs LOW)
 
   Q1: Base = 0V : OFF 
@@ -158,3 +161,4 @@ For A = 5V, B = 5V (Both inputs HIGH)
 
   Current Path: +5V to Pull-up resistor to Output to Both Q1 and Q2 (parallel paths to ground). Both transistors provide paths to ground, pulling output LOW.
   Output: LOW 
+```
