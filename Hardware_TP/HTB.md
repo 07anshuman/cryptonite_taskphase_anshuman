@@ -168,8 +168,164 @@ For A = 5V, B = 5V (Both inputs HIGH)
 
 ### Flag: HTB{Unl0ck_7he_L0gic_Puzz1e}
 
+Equation based on the gates shown in the picture: ```((A_ and B_)) or (not((C or D) and (E and F)))``` 
+However, this equation is incorrect and doesn't give a valid flag. ```((A_ and B_)) or (not((C or D) or (E and F)))```
+The NAND gate in the circuit is actually supposed to be a NOR gate. Then by running a script taking all inputs given in the CSV into the equation and taking the other output of the NOR gate to be a 1, we get the flag. 
+
 ## Challenge 2: 
 ![img2](https://github.com/user-attachments/assets/3726a3d5-d26a-4f88-8d49-e4e707db07a3)
 
+Very simple. Just two AND gates ORd together. Produces a flag. 
+
 ### Flag: HTB{4_G00d_Cm05_3x4mpl3}
 
+## Logic Gates using MOSFETS (CMOS LOGIC)
+![NAND-Gate-and-NOR-Gate](https://github.com/user-attachments/assets/0e91c6c0-7a01-42cd-878e-910c9c2ed218)
+
+PMOS (P-Channel MOSFETs) - Top mosfets (receiving the inverted inputs)
+```
+ON when gate = LOW (0V) - creates path from VDD to output
+OFF when gate = HIGH (VDD) - blocks current flow
+Acts as pull-up network (connects output to VDD)
+```
+
+NMOS (N-Channel MOSFETs) - Bottom mosfets
+```
+ON when gate = HIGH (VDD) - creates path from output to ground
+OFF when gate = LOW (0V) - blocks current flow
+Acts as pull-down network (connects output to ground)
+```
+
+Construction
+
+2 PMOS in parallel (pull-up network)
+2 NMOS in series (pull-down network)
+When pull-up is ON, pull-down is OFF
+
+For: A = 0, B = 0
+PMOS Network:
+```
+PMOS_A: Gate = 0 : ON (VDD to output)
+PMOS_B: Gate = 0 : ON (VDD to output)
+Both PMOS ON in parallel : Strong pull-up to VDD
+```
+NMOS Network:
+```
+NMOS_A: Gate = 0 : OFF
+NMOS_B: Gate = 0 : OFF
+Series path broken : No pull-down
+```
+Output: HIGH (VDD)
+
+For A = 0, B = 1
+PMOS Network:
+```
+PMOS_A: Gate = 0 : ON
+PMOS_B: Gate = 1 : OFF
+One PMOS ON : Pull-up path exists
+```
+NMOS Network:
+```
+NMOS_A: Gate = 0 : OFF
+NMOS_B: Gate = 1 : ON
+Series broken by NMOS_A : No complete pull-down
+```
+Output: HIGH (VDD) 
+
+For: A = 1, B = 0
+PMOS Network:
+```
+PMOS_A: Gate = 1 : OFF
+PMOS_B: Gate = 0 : ON
+One PMOS ON : Pull-up path exists
+```
+NMOS Network:
+```
+NMOS_A: Gate = 1 : ON
+NMOS_B: Gate = 0 : OFF
+Series broken by NMOS_B : No complete pull-down
+```
+Output: HIGH (VDD) 
+
+For A = 1, B = 1
+PMOS Network:
+```
+PMOS_A: Gate = 1 : OFF
+PMOS_B: Gate = 1 : OFF
+No pull-up path
+```
+NMOS Network:
+```
+NMOS_A: Gate = 1 : ON
+NMOS_B: Gate = 1 : ON
+Complete series path : Strong pull-down to ground
+```
+Output: LOW (0V)
+
+### CMOS NOR Gate
+
+Construction
+
+2 PMOS in series (pull-up network)
+2 NMOS in parallel (pull-down network)
+Opposite of NAND structure
+
+For A = 0, B = 0
+PMOS Network:
+```
+PMOS_A: Gate = 0 : ON
+PMOS_B: Gate = 0 : ON
+Complete series path : Strong pull-up to VDD
+
+NMOS Network:
+```
+NMOS_A: Gate = 0 : OFF
+NMOS_B: Gate = 0 : OFF
+No pull-down path
+```
+Output: HIGH (VDD) 
+
+For A = 0, B = 1
+PMOS Network:
+```
+PMOS_A: Gate = 0 : ON
+PMOS_B: Gate = 1 : OFF
+Series broken by PMOS_B : No pull-up
+```
+NMOS Network:
+```
+NMOS_A: Gate = 0 : OFF
+NMOS_B: Gate = 1 : ON
+NMOS_B provides pull-down path
+```
+Output: LOW (0V) 
+
+For A = 1, B = 0
+PMOS Network:
+```
+PMOS_A: Gate = 1 : OFF
+PMOS_B: Gate = 0 : ON
+Series broken by PMOS_A : No pull-up
+
+NMOS Network:
+```
+NMOS_A: Gate = 1 : ON
+NMOS_B: Gate = 0 : OFF
+NMOS_A provides pull-down path
+```
+Output: LOW (0V)
+
+For A = 1, B = 1
+PMOS Network:
+```
+PMOS_A: Gate = 1 : OFF
+PMOS_B: Gate = 1 : OFF
+No pull-up path
+```
+NMOS Network:
+```
+NMOS_A: Gate = 1 : ON
+NMOS_B: Gate = 1 : ON
+Both parallel paths ON : Strong pull-down
+```
+Output: LOW (0V) 
