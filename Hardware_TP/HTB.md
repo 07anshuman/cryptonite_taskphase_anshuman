@@ -1,6 +1,6 @@
 
 
-# Transistor Logic Gates:
+# Transistor and MOSFET Logic Gates:
 
 [This](https://youtu.be/OWlD7gL9gS0?si=LKe85J5l2eLnGVyW) video perfectly explains the construction of AND, NAND, OR, NOR gates using transistors. However, let's see how they work mathematically.
 
