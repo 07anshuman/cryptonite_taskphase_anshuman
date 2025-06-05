@@ -329,3 +329,45 @@ NMOS_B: Gate = 1 : ON
 Both parallel paths ON : Strong pull-down
 ```
 Output: LOW (0V) 
+
+### NOT gate
+![CMOSTechnologyCMOSInverter](https://github.com/user-attachments/assets/a5994d80-06af-4f1d-a8e6-7eeeafcacdde)
+
+    PMOS transistor connected between VDD and output
+    1 NMOS transistor connected between output and ground
+    Both gates connected to input A
+    Complementary operation: When one is ON, the other is OFF
+
+For A = 0 (Input LOW)
+PMOS Transistor:
+```
+Gate = 0V : ON (conducts)
+Creates path: VDD to PMOS to Output
+Pulls output HIGH
+```
+NMOS Transistor:
+```
+Gate = 0V : OFF (does not conduct)
+No path from output to ground
+No pull-down
+
+Current Path: VDD to PMOS to Output (no current to ground)
+```
+Output: HIGH (VDD = 1) 
+
+For A = 1 (Input HIGH)
+PMOS Transistor:
+```
+Gate = VDD : OFF (does not conduct)
+No path from VDD to output
+No pull-up
+```
+NMOS Transistor:
+```
+Gate = VDD : ON (conducts)
+Creates path: Output to NMOS to Ground
+Pulls output LOW
+
+Current Path: Output to NMOS to Ground (no current from VDD)
+```
+Output: LOW (0V = 0) 
