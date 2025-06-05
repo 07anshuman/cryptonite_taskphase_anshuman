@@ -162,3 +162,14 @@ For A = 5V, B = 5V (Both inputs HIGH)
   Current Path: +5V to Pull-up resistor to Output to Both Q1 and Q2 (parallel paths to ground). Both transistors provide paths to ground, pulling output LOW.
   Output: LOW 
 ```
+
+## Challenge 1: 
+![img](https://github.com/user-attachments/assets/48166180-6d6d-4aac-95d6-066008705508)
+
+### Flag: HTB{Unl0ck_7he_L0gic_Puzz1e}
+
+## Challenge 2: 
+![img2](https://github.com/user-attachments/assets/3726a3d5-d26a-4f88-8d49-e4e707db07a3)
+
+### Flag: HTB{4_G00d_Cm05_3x4mpl3}
+
