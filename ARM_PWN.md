@@ -34,3 +34,14 @@ asm_bytes = asm("""
 I initially tried moving random values but it wanted me to set x1 to 0xdeadbeef. x1 is set to `0x000000000000beef` after the first MOV (MOV is just MOVZ, meaning it doesn't shift the value insertion position i.e. starts inserting values into register at 0th bit) and then lsl shifts the incoming 0xdead to start insertion at 16th bit. 
 flag: pwn.college{wwsigwa5pvsF4Bk8Hyrik1Vqq0n.dBjM2MDL3IjN0czW}
 
+# Level 3: Basic Arithmetic
+
+I had to perform some basic arithmetic, moved values into X1,X2 and added them into X0 but the program needed me to perform `mx+b` where m was X0, x was X1, b was X2 and had to place the value into X0
+```
+asm_bytes = asm("""
+    MUL X0, X0, X1     // X0 = X0*X1 (mx)
+    ADD X0, X0, X2     // X0 = X0 + X2 (mx+b)
+""")
+```
+flag: pwn.college{MdKm-e5xUqXV-7QA9OfNY0Bl5i5.dFjM2MDL3IjN0czW}
+
