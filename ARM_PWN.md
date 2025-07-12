@@ -45,3 +45,12 @@ asm_bytes = asm("""
 ```
 flag: pwn.college{MdKm-e5xUqXV-7QA9OfNY0Bl5i5.dFjM2MDL3IjN0czW}
 
+# Level 4: Efficient Arithmetic
+
+It wanted to perform the same function in one operation. Quick search: MADD allowed multiply and add in the same operation 
+```
+asm_bytes = asm("""
+     MADD X0, X0, X1, X2 (destination, multiply1, multiply2, add)
+""")
+```
+flag: pwn.college{szWawLzvPC7_tegnhauU_lX5c_4.dJjM2MDL3IjN0czW}
