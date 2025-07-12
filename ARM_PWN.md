@@ -54,3 +54,15 @@ asm_bytes = asm("""
 """)
 ```
 flag: pwn.college{szWawLzvPC7_tegnhauU_lX5c_4.dJjM2MDL3IjN0czW}
+
+# Level 5: Modulo Operation
+
+Modulo doesn't have a dedicated OPCODE and so it had to be performed by its definition which is to find the remainder: Dividend - Quotient*Divisor
+```
+asm_bytes = asm("""
+    UDIV X2, X0, X1        // X2 = X0 / X1
+    MSUB X0, X2, X1, X0    // X0 = X0 - (X2 * X1)
+""")
+```
+UDIV is for unsigned division, in AMD64 it needs to explicitly know signed div from unsigned div, and MSUB is for Multiply-subtraction like MADD
+flag: pwn.college{wbnV-4V-4D_UsOeSEaJDhR2jy8g.dNjM2MDL3IjN0czW}
