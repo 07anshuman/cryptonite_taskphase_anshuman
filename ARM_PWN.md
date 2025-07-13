@@ -66,3 +66,18 @@ asm_bytes = asm("""
 ```
 UDIV is for unsigned division, in AMD64 it needs to explicitly know signed div from unsigned div, and MSUB is for Multiply-subtraction like MADD
 flag: pwn.college{wbnV-4V-4D_UsOeSEaJDhR2jy8g.dNjM2MDL3IjN0czW}
+
+# Level 6: Shifting
+
+The program was about LSL and RSL shifting.  X1 = | B7 | B6 | B5 | B4 | B3 | B2 | B1 | B0 |
+        Set X0 to the value of B3
+
+`We will now set the following in preparation for your code:
+        X0 = 0x7c8c1616626683bb`
+```
+asm_bytes = asm("""
+    LSL X0, X0, #32
+    LSR X0, X0, #56
+""")
+```
+flag: pwn.college{8Oq1qabADqST3TaFcLTv2GwSIol.dRjM2MDL3IjN0czW}
