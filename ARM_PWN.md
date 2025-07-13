@@ -130,4 +130,117 @@ STP X0, XZR, [SP, #-16]!
 ```
 flag: pwn.college{4JBUtaVhqBauVoWVGT2hY3TeYoT.ddjM2MDL3IjN0czW}
 
-# Level 10: 
+# Level 10: Swapping register values using two instructions
+
+Since it had to be done in two instructions, bitwise operators were out and they mentioned we've used the instructions before, so simply pushing them onto stack and then loading them in the opposite pair does the job. Cannot directly load them because they're not memory addresses but register values 
+```
+asm_bytes = asm("""
+    STP X0, X1, [SP, #-16]!   
+    LDP X1, X0, [SP], #16     
+
+""")
+```
+flag: pwn.college{ItVQWiKGhav_n910hdn6ygsy_Gs.dhjM2MDL3IjN0czW}
+
+# Level 11: sum of array
+
+```
+asm_bytes = asm("""
+   MOV     X2, #0          // index counter
+MOV     X3, #0          // sum 
+
+LOOP:
+    LDR     X4, [X0, X2, LSL #3]   // base+index*shift LSL #3 is shifting by 3 which is basically 2*2*2 since every memory address of the array has to be                                    // 8 bytes far
+    ADD     X3, X3, X4             // sum += value
+    ADD     X2, X2, #1             // index++
+    CMP     X2, X1                 // compare
+    B.LT    LOOP                   // here it branches back to the label LOOP (like a function) if the result of CMP is Less Than which is checked via                                       // CSRP register; if CSRP register shows N meaning X2 is less than X1 and hence X2-X1 is negative
+
+MOV     X0, X3          
+""")
+```
+flag: pwn.college{Qg5LnEgaXamAL3PI7VF48BA9U2Z.dljM2MDL3IjN0czW}
+
+# Level 12: Efficient sum of array
+
+Constraint: do the above in 6 instructions using pre/post increment, directly using values
+```
+asm_bytes = asm("""
+ MOV     X2, #0            // sum
+
+LOOP:
+    LDR     X3, [X0], #8  // post increment 
+    ADD     X2, X2, X3    
+    SUBS    X1, X1, #1    // SUB'S' here is for setting the Z flag of CSPR regsiter so if the value is 0, meaning X1 becomes 0 by decrementing 1 each time
+    B.NE    LOOP          // NE is for Not Equal so if Z is Not Equal to 0 it LOOPs again
+                          // this eliminates the need for a loop index 
+MOV     X0, X2            
+""")
+```
+flag: pwn.college{o9R_3sO91QcgUA8GQDQ8ruFtnG3.dBzM2MDL3IjN0czW}
+
+# Level 13: Relative and Absolute jumping
+
+```
+asm_bytes = asm("""
+
+B #0x40                    //relative jump by 64 bytes
+
+NOP
+NOP
+NOP
+NOP                    // paading by 15 NOP (no operation) =60bytes instead of 64 because 4 is taken up by the b #0x40 itself
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+
+LDR X1, [SP]               
+MOVZ X2, #0x3000, LSL #0   
+MOVK X2, #0x40, LSL #16    //setting absolute address
+BR X2                     // jumping to absolute address
+""")
+```
+flag: pwn.college{Eihuwf0P1jXGvoKiKy-04uOndTL.dFzM2MDL3IjN0czW}
+
+# Level 14: Write an Average function
+```
+asm_bytes = asm("""
+CALC_AVG:
+    STP X29, X30, [SP, #-16]!     // Function prologue 
+    MOV X29, SP                   // Store the current LR and FP values onto the stack to retreive and collapse function stack later
+
+    MOV X2, #0                    // sum
+    MOV X3, #0                    // i
+
+LOOP:
+    CMP X3, X1                    // Compares if i==count
+    B.GE DONE                     // if it is, that means summing is complete
+
+    LDR X4, [X0, X3, LSL #3]      // loads X0+X3*8 into X4 i.e. array elements one by one into X4
+    ADD X2, X2, X4                
+    ADD X3, X3, #1                
+    B LOOP                        
+
+DONE:
+    UDIV X0, X2, X1               // Average stored in X0 to return
+
+    LDP X29, X30, [SP], #16       // Function epilogue
+    RET                           // returns using LR the value stored in X0
+""")
+
+```
+flag: pwn.college{cOKAzaxvaW1RepvYQoeighUy1Y4.dNzM3MDL3IjN0czW}
+
+# Level 15: write a fib function
+```
+
+```
+flag: pwn.college{8db3mZuFXNujjrKS7KZ-9GfXB1A.dJzM2MDL3IjN0czW}
