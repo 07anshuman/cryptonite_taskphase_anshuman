@@ -81,3 +81,22 @@ asm_bytes = asm("""
 """)
 ```
 flag: pwn.college{8Oq1qabADqST3TaFcLTv2GwSIol.dRjM2MDL3IjN0czW}
+
+# Level 7: Loading and storing values (Unsolved)
+
+So it should've been simple, load and store values after adding. I tried multiple times, using literal pools (LDR X1, =0xADDR), by building addresses using 16 bit MOV immediates into registers, by traversing using [X1, #8], but nothing worked. It gave CPU error or no error and set the X0 register to the correct value that should've been and yet no flag. I will revisit at a later time.
+
+# Level 8: Loading and storing pairs
+
+The level needed to work with LDP and STP which is load pair and store pair. Now because it did not allow LDR, I had to build the base address using MOV and MOVK (allowed), and then use LDP to load the pair into X1, X2 and STP to store [X0, #0x10] to X1, X2 pair.
+```
+asm_bytes = asm("""
+MOV    X0, #0x4000, LSL #0      
+MOVK   X0, #0x40,    LSL #16    
+
+LDP     X1, X2, [X0]              // load X1 = [0x404000], X2 = [0x404008]
+STP     X1, X2, [X0, #0x10]       // store X1 to 0x404010, X2 to 0x404018
+
+""")
+```
+flag: pwn.college{0RfBCCxD4o5G8XASZrBRMPjy_b3.dZjM2MDL3IjN0czW}
