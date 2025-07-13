@@ -1,3 +1,5 @@
+I followed this [video](https://youtu.be/gfmRrPjnEw4?si=G8noL4Ux3Dw3qRP6).
+
 # Level 1: Set a Register Value
 
 In the General Tips, the way to execute ARM64 instructions in the dojo had been given 
@@ -100,3 +102,32 @@ STP     X1, X2, [X0, #0x10]       // store X1 to 0x404010, X2 to 0x404018
 """)
 ```
 flag: pwn.college{0RfBCCxD4o5G8XASZrBRMPjy_b3.dZjM2MDL3IjN0czW}
+
+# Level 9: Working with Stack
+
+Now here 8 QWORDS had to be popped and taken average of. However, the program gave a little note about maintaining 16 byte alignment when working with SP in AArch64. Since a QWORD is 64 bits, that meant popping two adjacent QWORDS in one go. Which meant popping them as a pair. Then computing the sum, and average using ADD and UDIV. Now lastly, pushing it onto stack while keeping the alignment meant also pushing some other value into the adjacent pair. I looked online and the way this is done as a standard is using the zero register. So stack grows downward with the X0 computed average and zero values. 
+
+```
+asm_bytes = asm("""
+LDP X0, X1, [SP], #16     //16 byte alignment as per requirement
+LDP X2, X3, [SP], #16
+LDP X4, X5, [SP], #16
+LDP X6, X7, [SP], #16
+
+ADD X0, X0, X1
+ADD X0, X0, X2
+ADD X0, X0, X3
+ADD X0, X0, X4
+ADD X0, X0, X5
+ADD X0, X0, X6
+ADD X0, X0, X7
+
+MOV X1, #8
+UDIV X0, X0, X1
+
+STP X0, XZR, [SP, #-16]!
+""")
+```
+flag: pwn.college{4JBUtaVhqBauVoWVGT2hY3TeYoT.ddjM2MDL3IjN0czW}
+
+# Level 10: 
