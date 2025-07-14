@@ -240,6 +240,7 @@ DONE:
 flag: pwn.college{cOKAzaxvaW1RepvYQoeighUy1Y4.dNzM3MDL3IjN0czW}
 
 # Level 15: write a fib function
+Stack grows downward into smaller memory addresses(not memory size just address). Very important to understand the stack push and pop in each frame that opens. Pushing current pos into stack before calling fib and pushing obtained result in X20. Retrieving X19 and X20 before closing frame. 
 ```
 FIB:
     STP     X29, X30, [SP, #-0X30]!     // 48 bytes of stack allocated at once
