@@ -241,6 +241,39 @@ flag: pwn.college{cOKAzaxvaW1RepvYQoeighUy1Y4.dNzM3MDL3IjN0czW}
 
 # Level 15: write a fib function
 ```
+FIB:
+    STP     X29, X30, [SP, #-0X30]!     // 48 bytes of stack allocated at once
+    MOV     X29, SP                     // 
+    STP     X19, X20, [SP, #0X10]       // X19 and X20 pushed at SP+16 
+
+    CMP     X0, #0                      
+    B.EQ    ZERO_CASE                   
+
+    CMP     X0, #1                    
+    B.EQ    ONE_CASE                   
+
+    MOV     X19, X0                     // callee saved registers to store the pos
+    SUB     X0, X0, #1                  
+    BL      FIB                       
+    MOV     X20, X0                  
+
+    SUB     X0, X19, #2               
+    BL      FIB                         
+    ADD     X0, X0, X20
+
+    LDP     X19, X20, [SP, #0X10]       
+    B       END                    
+
+ZERO_CASE:
+    MOV     X0, #0                     
+    B       END
+
+ONE_CASE:
+    MOV     X0, #1                     
+
+END:
+    LDP     X29, X30, [SP], #0X30      
+    RET
 
 ```
 flag: pwn.college{8db3mZuFXNujjrKS7KZ-9GfXB1A.dJzM2MDL3IjN0czW}
