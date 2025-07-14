@@ -243,8 +243,8 @@ flag: pwn.college{cOKAzaxvaW1RepvYQoeighUy1Y4.dNzM3MDL3IjN0czW}
 Stack grows downward into smaller memory addresses(not memory size just address). Very important to understand the stack push and pop in each frame that opens. Pushing current pos into stack before calling fib and pushing obtained result in X20. Retrieving X19 and X20 before closing frame. 
 ```
 FIB:
-    STP     X29, X30, [SP, #-0X30]!     // 48 bytes of stack allocated at once
-    MOV     X29, SP                     // 
+    STP     X29, X30, [SP, #-0X30]!     // 48 bytes of stack allocated at once, the X29,X30,X19,X20 registers only need 32 bytes but it doesn't work with that.
+    MOV     X29, SP                     // finally I tried the dojo's recommendation in the disc of epilogue to be allocating 48 bytes to the stack and that worked
     STP     X19, X20, [SP, #0X10]       // X19 and X20 pushed at SP+16 
 
     CMP     X0, #0                      
